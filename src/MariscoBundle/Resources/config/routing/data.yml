@@ -9,7 +9,7 @@ data_show:
     methods:  GET
 
 data_new:
-    path:     /new
+    path:     /{user}/new
     defaults: { _controller: "MariscoBundle:Data:new" }
     methods:  [GET, POST]
 

@@ -108,9 +108,12 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $userManager = $this->container->get('fos_user.user_manager');
+            $userManager->updatePassword($user);
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/edit.html.twig', array(

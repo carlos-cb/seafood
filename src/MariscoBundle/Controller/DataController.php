@@ -3,6 +3,7 @@
 namespace MariscoBundle\Controller;
 
 use MariscoBundle\Entity\Data;
+use MariscoBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,18 +32,20 @@ class DataController extends Controller
      * Creates a new datum entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, User $user)
     {
         $datum = new Data();
         $form = $this->createForm('MariscoBundle\Form\DataType', $datum);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $datum->setUser($user);
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($datum);
             $em->flush($datum);
 
-            return $this->redirectToRoute('data_show', array('id' => $datum->getId()));
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('data/new.html.twig', array(
@@ -78,7 +81,7 @@ class DataController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('data_edit', array('id' => $datum->getId()));
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('data/edit.html.twig', array(
