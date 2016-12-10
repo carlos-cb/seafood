@@ -1,0 +1,23 @@
+order_guestinfo:
+    path:     /guestinfo
+    defaults: { _controller: MariscoBundle:Default:guestinfo }
+
+order_cartToOrderinfo:
+    path:     /cartToOrderinfo
+    defaults: { _controller: MariscoBundle:Order:cartToOrderinfo }
+
+order_orderpay:
+    path:     /orderpay/{orderInfo}
+    defaults: { _controller: MariscoBundle:Order:orderpay }
+
+order_pedido:
+    path:     /pedido
+    defaults: { _controller: MariscoBundle:Default:pedido }
+
+order_pedidoOther:
+    path:     /pedido/{state}
+    defaults: { _controller: MariscoBundle:Default:pedidoOther }
+
+order_productlistclient:
+    path:     /pedido/productlistclient/{orderInfo}
+    defaults: { _controller: MariscoBundle:Default:productlistclient }

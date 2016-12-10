@@ -1,0 +1,40 @@
+MariscoBundle\Entity\Data:
+    type: entity
+    table: null
+    repositoryClass: MariscoBundle\Repository\DataRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        receivername:
+            type: string
+            length: 255
+        receiverphone:
+            type: string
+            length: 255
+        receiveradress:
+            type: string
+            length: 255
+        receiverprovince:
+            type: string
+            length: 255
+        receivercity:
+            type: string
+            length: 255
+        receiverpostcode:
+            type: string
+            length: 255
+        receiverShuihao:
+            type: string
+            length: 255
+    oneToOne:
+        user:
+            targetEntity: User
+            inversedBy: data
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

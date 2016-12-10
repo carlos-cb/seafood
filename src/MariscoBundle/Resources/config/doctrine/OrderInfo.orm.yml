@@ -1,0 +1,62 @@
+MariscoBundle\Entity\OrderInfo:
+    type: entity
+    table: null
+    repositoryClass: MariscoBundle\Repository\OrderInfoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        wantDate:
+            type: string
+            length: 255
+        orderDate:
+            type: datetime
+        goodsFee:
+            type: float
+        totalPrice:
+            type: float
+        discount:
+            type: float
+        receiverName:
+            type: string
+            length: 255
+        receiverPhone:
+            type: string
+            length: 255
+        receiverAdress:
+            type: string
+            length: 255
+        receiverCity:
+            type: string
+            length: 255
+        receiverProvince:
+            type: string
+            length: 255
+        receiverPostcode:
+            type: string
+            length: 255
+        receiverShuihao:
+            type: string
+            length: 255
+        isSended:
+            type: boolean
+        isOver:
+            type: boolean
+        state:
+            type: string
+            length: 255
+    oneToMany:
+        orderItems:
+            targetEntity: OrderItem
+            mappedBy: orderInfo
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: orderInfos
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

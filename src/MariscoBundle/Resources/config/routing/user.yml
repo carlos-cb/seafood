@@ -1,0 +1,37 @@
+user_index:
+    path:     /
+    defaults: { _controller: "MariscoBundle:User:index" }
+    methods:  GET
+
+user_show:
+    path:     /{id}/show
+    defaults: { _controller: "MariscoBundle:User:show" }
+    methods:  GET
+
+user_new:
+    path:     /new
+    defaults: { _controller: "MariscoBundle:User:new" }
+    methods:  [GET, POST]
+
+user_newAdmin:
+    path:     /newAdmin
+    defaults: { _controller: "MariscoBundle:User:newAdmin" }
+    methods:  [GET, POST]
+
+user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MariscoBundle:User:edit" }
+    methods:  [GET, POST]
+
+user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MariscoBundle:User:delete" }
+    methods:  DELETE
+
+user_enable:
+    path:     /{id}/enable
+    defaults: { _controller: "MariscoBundle:User:enable" }
+
+user_discount:
+    path:     /discount
+    defaults: { _controller: "MariscoBundle:User:discount" }

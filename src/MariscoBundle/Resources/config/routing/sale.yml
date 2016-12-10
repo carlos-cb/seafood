@@ -1,0 +1,35 @@
+sale_index:
+    path:     /
+    defaults: { _controller: "MariscoBundle:Sale:index" }
+
+saleA_index:
+    path:     /A
+    defaults: { _controller: "MariscoBundle:Sale:a" }
+
+a_add_sale:
+    path:     /A/addsale
+    defaults: { _controller: "MariscoBundle:Sale:aAddSale" }
+
+a_delete_sale:
+    path:     /A/deletesale/{id}
+    defaults: { _controller: "MariscoBundle:Sale:aDeleteSale" }
+
+saleB_index:
+    path:     /B
+    defaults: { _controller: "MariscoBundle:Sale:b" }
+
+b_add_sale:
+    path:     /B/addsale
+    defaults: { _controller: "MariscoBundle:Sale:bAddSale" }
+
+b_delete_sale:
+    path:     /B/deletesale/{id}
+    defaults: { _controller: "MariscoBundle:Sale:bDeleteSale" }
+
+saleD_index:
+    path:     /D
+    defaults: { _controller: "MariscoBundle:Sale:d" }
+
+d_edit_sale:
+    path:     /D/editsale
+    defaults: { _controller: "MariscoBundle:Sale:dEditSale" }

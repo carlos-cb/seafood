@@ -1,0 +1,27 @@
+{% extends 'MariscoBundle:BackEnd:index.html.twig' %}
+
+{% block menuslide %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('marisco_homepage_admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp;总览  <span class="sr-only">(current)</span></a></li>
+        <li><a><i class="fa fa-info" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;信息</a></li>
+        <li><a><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp; 分析</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('user_index') }}"><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp;用户管理</a></li>
+        <li class="active"><a href="{{ path('category_index') }}"><i class="fa fa-columns" aria-hidden="true"></i> &nbsp;&nbsp;分类管理</a></li>
+        <li><a href="{{ path('product_selectCategory') }}"><i class="fa fa-cutlery" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;产品管理</a></li>
+        <li><a href="{{ path('sale_index') }}"><i class="fa fa-heart" aria-hidden="true"></i> &nbsp;&nbsp;折扣管理</a></li>
+        <li><a href="{{ path('orderinfo_index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i> &nbsp;&nbsp;订单管理</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1 class="sub-header">创建新分类</h1>
+    <br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <input type="submit" class="button button-inverse" value="确定创建" />
+    <a href="{{ path('category_index') }}" class="button button-inverse">返回列表</a>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,24 @@
+orderitem_index:
+    path:     /
+    defaults: { _controller: "MariscoBundle:OrderItem:index" }
+    methods:  GET
+
+orderitem_show:
+    path:     /{id}/show
+    defaults: { _controller: "MariscoBundle:OrderItem:show" }
+    methods:  GET
+
+orderitem_new:
+    path:     /new
+    defaults: { _controller: "MariscoBundle:OrderItem:new" }
+    methods:  [GET, POST]
+
+orderitem_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MariscoBundle:OrderItem:edit" }
+    methods:  [GET, POST]
+
+orderitem_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MariscoBundle:OrderItem:delete" }
+    methods:  DELETE

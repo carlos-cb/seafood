@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/marisco/css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    {% include 'MariscoBundle:Public:header.html.twig' %}
+
+    <div>
+        <div class="mainimg">
+            <img src="{{ asset('bundles/marisco/img/crab-legs-1.jpg') }}">
+            <div class="words">
+                <h1>限时抢购</h1>
+                <h1>海鲜类部分产品八折</h1>
+            </div>
+        </div>
+        <section id="categorias" class="section-container">
+            <div class="">
+                <header class="section-heading">
+                    <h2 class="section-heading-title">Categorías</h2>
+                    <div class="section-heading-subtitle-container tilt-left">
+                        <h4 class="section-heading-subtitle">所有产品分类</h4>
+                    </div>
+                </header>
+            </div>
+            <div class="row">
+                {% for category in categories %}
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="animated">
+                            <div class="hungry-staff-member">
+                                <a href="{{ path('font_productList', { 'category': category.id }) }}">
+                                    <img src="{{ asset('uploads/fotos/' ~ category.foto) }}" class="hungry-staff-member-thumbnail">
+                                </a>
+                                <h3 class="hungry-staff-member-title">{{ category.name }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

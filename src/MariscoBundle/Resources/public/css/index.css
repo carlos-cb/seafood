@@ -1,0 +1,134 @@
+
+.navbar-inverse {
+    background-color: #000;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+.mainimg{
+    position: relative;
+}
+.mainimg img{
+    max-width: 100%;
+    width: 100%;
+}
+.mainimg .words {
+    font-family: Times New Roman,serif;
+    font-weight: bold;
+    font-style: italic;
+    color: #000;
+    position: absolute;
+    z-index: 10;
+}
+#categorias {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.section-container {
+    clear: both;
+}
+.section-heading {
+    text-align: center;
+    position: relative;
+}
+#categorias h2, #categorias h3{
+    color: #ccad52;
+    font-family: "Aguafina Script", Verdana, Geneva, sans-serif;
+}
+#categorias h4{
+    font-family: "Ubuntu", Verdana, Geneva, sans-serif;
+}
+.section-heading-subtitle {
+    display: inline;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #000;
+    padding: 3px 8px 5px 8px;
+    border: 3px solid #eaeaea;
+}
+.section-heading-subtitle-container {
+    max-width: 99.9%;
+}
+.grid-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.hungry-staff-member {
+    padding: 0 30px;
+    text-align: center;
+}
+#categorias img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    color: transparent;
+    font-size: 0;
+    vertical-align: middle;
+}
+.hungry-staff-member {
+    padding: 0 30px;
+    text-align: center;
+}
+.hungry-staff-member-thumbnail {
+
+    -webkit-box-shadow: 0 0 0 10px #f1f1f1;
+    -moz-box-shadow: 0 0 0 10px #f1f1f1;
+    box-shadow: 0 0 0 10px #f1f1f1;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -ms-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+
+
+@media (min-width: 992px){
+    .mainimg .words {
+        top: 55%;
+        left: 12%;
+    }
+    .mainimg .words h1{
+        font-size: 50px;
+    }
+    #categorias h2{
+        font-size: 50px;
+    }
+    .animated{
+        margin-bottom: 80px;
+    }
+    .hungry-staff-member-thumbnail {
+        margin-bottom: 40px;
+    }
+    .section-heading{
+        margin-bottom: 100px;
+    }
+}
+
+
+@media (max-width: 991px){
+    .mainimg .words {
+        top: 38%;
+        left: 5%;
+    }
+    .mainimg .words h1{
+        font-size: 20px;
+    }
+    #categorias h2{
+        font-size: 35px;
+    }
+    .animated{
+        margin-bottom: 50px;
+    }
+    .section-heading{
+        margin-bottom: 50px;
+    }
+}

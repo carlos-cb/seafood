@@ -1,0 +1,138 @@
+span.sale{
+    color: #ce0013;
+}
+a:hover{
+    text-decoration: none;
+}
+.thumbnail{
+    border: hidden;
+}
+.topnav{
+    background-color: #000;
+    color: #fff;
+}
+
+@media (max-width: 991px){
+    .topnav{
+        height: 65px;
+        width: 100%;
+    }
+    .toplogo {
+        float: right;
+        padding-top: 10px;
+        margin-right: 40px;
+    }
+    .rightlogo{
+        float: left;
+        padding-top: 10px;
+        margin-left: 40px;
+    }
+    .topnav a{
+        cursor: pointer;
+        color: #fff;
+        font-size: 35px;
+        font-weight: 400;
+    }
+    .product{
+        margin-top: 10px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .product #productimg{
+        height: 290px;
+        margin-bottom: 15px;
+    }
+    .product .thumbnail {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 30px;
+        border-radius: 0;
+    }
+    .product .thumbnail img {
+        max-width: 100%;
+        height: 100%;
+    }
+    .product .thumbnail .caption {
+        padding: 4px;
+        overflow-y: hidden;
+        color: #555;
+    }
+    .product #productinfo{
+        float: left;
+    }
+    #productname p{
+        font-weight: bold;
+    }
+    .product p{
+        font-size:28px;
+        line-height: 1.4;
+    }
+    span.line-through{
+        font-size:20px;
+        text-decoration: line-through;
+    }
+}
+@media (min-width: 992px){
+    .topnav{
+        height: 45px;
+        width: 100%;
+    }
+    .toplogo {
+        float: right;
+        padding-top: 10px;
+        margin-right: 40px;
+    }
+    .rightlogo{
+        float: left;
+        padding-top: 10px;
+        margin-left: 40px;
+    }
+    .topnav a{
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .product{
+        margin-top: 10px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .product #productimg{
+        height: 280px;
+        margin-bottom: 15px;
+    }
+    .product .thumbnail {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 30px;
+        border-radius: 0;
+    }
+    .product .thumbnail img {
+        max-width: 100%;
+        height: 100%;
+    }
+    .product .thumbnail .caption {
+        padding: 4px;
+        overflow-y: hidden;
+        color: #555;
+    }
+    .product #productinfo{
+        float: left;
+        font-size: 20px;
+    }
+    #productname p{
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .product p{
+        line-height: 1;
+    }
+    span.line-through{
+        font-size:14px;
+        text-decoration: line-through;
+    }
+}

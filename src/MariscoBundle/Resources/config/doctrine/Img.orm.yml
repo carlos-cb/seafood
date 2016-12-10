@@ -1,0 +1,20 @@
+MariscoBundle\Entity\Img:
+    type: entity
+    table: null
+    repositoryClass: MariscoBundle\Repository\ImgRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        foto:
+            type: string
+            length: 255
+        url:
+            type: integer
+    lifecycleCallbacks: {  }

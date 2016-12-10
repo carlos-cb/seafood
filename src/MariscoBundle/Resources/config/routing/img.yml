@@ -1,0 +1,24 @@
+img_index:
+    path:     /
+    defaults: { _controller: "MariscoBundle:Img:index" }
+    methods:  GET
+
+img_show:
+    path:     /{id}/show
+    defaults: { _controller: "MariscoBundle:Img:show" }
+    methods:  GET
+
+img_new:
+    path:     /new
+    defaults: { _controller: "MariscoBundle:Img:new" }
+    methods:  [GET, POST]
+
+img_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MariscoBundle:Img:edit" }
+    methods:  [GET, POST]
+
+img_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MariscoBundle:Img:delete" }
+    methods:  DELETE

@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/marisco/css/orderinfo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/marisco/css/cart.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    {% include 'MariscoBundle:Public:header.html.twig' %}
+
+        <div class="line mod">
+            <div class="unit size1of1">
+                <h2>订单处理流程</h2>
+                <p>若您在购物过程中遇到困难或问题 请联系客服电话:  688 099 999</p>
+            </div>
+        </div>
+        <div class="line mod">
+            <div class="unit size1of1">
+                <div class="steps">
+                    <ul class="listH">
+                        <li>1. 选择货品</li>
+                        <li>2. 填写信息</li>
+                        <li class="act">3. 确认订单</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="" name="orderinfo">
+            <div class="">
+                <h2>订单确认</h2>
+                <h2>状态：备货中</h2>
+                <h4 style="font-weight: bold; color: #ff0000">请耐心等待发货，可在"我的订单"中查看订单最新状态.</h4>
+                <br>
+                <a href="{{ path('order_pedido') }}" class="button button-rounded button-inverse">查看我的订单</a>
+            </div>
+            <br>
+        </form>
+
+        <div class="line">
+            <div class="unit size1of1" style="width: 90%;">
+                <div class="section">
+                    <h3 class="titleSection">DETALLES DE TU PEDIDO</h3>
+                    <div class="line">
+                        <div class="unit size1of2 firstUnit">
+                            <label>Datos Contacto</label>
+                            <div class="address">
+                                <div><strong class="userName">{{ orderInfo.receiverName }}</strong></div>
+                                <div class="userCountry">{{ orderInfo.receiverShuihao }}</div>
+                                <div class="userCountry">España</div>
+                                <div class="contact">
+                                    Móvil: <span class="userPhone">+34 {{ orderInfo.receiverPhone }}</span>
+                                </div>
+                                <input type="hidden" value="" class="billAddrZipCode">
+                            </div>
+                        </div>
+                        <div class="unit size1of2 lastUnit">
+                            <label>Dirección de envío</label>
+                            <div class="address">
+                                <div class="userAddress">{{ orderInfo.receiverAdress }}&nbsp;</div>
+                                <div class="userZip">
+                                    <span>{{ orderInfo.receiverPostcode }}</span>&nbsp;
+                                </div>
+                                <div class="userState">{{ orderInfo.receiverCity }}</div>
+                                <div class="userState">{{ orderInfo.receiverProvince }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line" style="overflow: auto;">
+            <table class="order-table">
+                <thead>
+                <tr class="thead">
+                    <th>PRODUCTO</th>
+                    <th class="description">DESCRIPCIÓN</th>
+                    <th class="">CÓDIGO</th>
+                    <th class="quantity">CANTIDAD</th>
+                    <th class="quantity">PRECIO</th>
+                    <th class="price" id="priceHeader" style="text-align: right;">IMPORTE</th>
+                </tr>
+                </thead>
+                <tbody id="shangpin">
+                {% for orderItem in orderInfo.orderItems %}
+                    <tr id="order-item" class="order-item">
+                        <td class="_detail">
+                                <img src="{{ asset('uploads/fotos/' ~ orderItem.product.foto) }}" width="180px;">
+                        </td>
+                        <td class="description _detail">
+                                <span>{{ orderItem.product.name }}</span>
+                        </td>
+                        <td class=" _detail">
+                            <span>Ref.&nbsp;{{ orderItem.product.code }}</span>
+
+                        </td>
+                        <td class="quantity">
+                            <span class="_quantity" id="_quantity">{{ orderItem.quantity }}</span>
+                            <span id="cartItemId" style="display: none">{{ orderItem.id }}</span>
+                            <span id="priceunit" style="display: none">{{ orderItem.price }}</span>
+                        </td>
+                        <td class="quantity">
+                            {{ orderItem.price|number_format(2, '.', ',') }}
+                        </td>
+                        <td class="price"><span id="heji">{{ (orderItem.total)|number_format(2, '.', ',') }}</span> EUR</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="5" class="order-items-total" scope="row">Total de productos:</th>
+                    <td class="order-items-total" headers="priceHeader"><span id="totalprice">{{ orderInfo.goodsFee|number_format(2, '.', ',') }}</span> EUR</td>
+                </tr>
+                <tr>
+                    <th class="order-delivery-costs" colspan="5" scope="row">Descuento:</th>
+                    <td class="order-delivery-costs" headers="priceHeader">
+                            {{ (orderInfo.goodsFee-orderInfo.totalPrice)|number_format(2, '.', ',') }} EUR</td>
+                </tr>
+                <tr class="total">
+                    <th colspan="5" scope="row"><strong>Total:</strong></th>
+                    <td class="order-total" headers="priceHeader"><span id="total">{{ orderInfo.totalPrice|number_format(2, '.', ',') }}</span> EUR</td>
+                </tr>
+                <tr class="order-vat-costs">
+                    <th colspan="5" scope="row">
+                        <span class="offleft">Impuestos</span>
+                    </th>
+                    <td headers="priceHeader"><em>* IVA incluido</em></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}

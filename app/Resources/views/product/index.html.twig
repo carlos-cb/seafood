@@ -1,0 +1,72 @@
+{% extends 'MariscoBundle:BackEnd:index.html.twig' %}
+
+{% block menuslide %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('marisco_homepage_admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp;总览  <span class="sr-only">(current)</span></a></li>
+        <li><a><i class="fa fa-info" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;信息</a></li>
+        <li><a><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp; 分析</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('user_index') }}"><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp;用户管理</a></li>
+        <li><a href="{{ path('category_index') }}"><i class="fa fa-columns" aria-hidden="true"></i> &nbsp;&nbsp;分类管理</a></li>
+        <li class="active"><a href="{{ path('product_selectCategory') }}"><i class="fa fa-cutlery" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;产品管理</a></li>
+        <li><a href="{{ path('sale_index') }}"><i class="fa fa-heart" aria-hidden="true"></i> &nbsp;&nbsp;折扣管理</a></li>
+        <li><a href="{{ path('orderinfo_index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i> &nbsp;&nbsp;订单管理</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {% if category is defined %}
+        <h1 class="sub-header">产品管理, {{ category.name }}</h1>
+    {% else %}
+        <h1 class="sub-header">所有产品列表</h1>
+    {% endif %}
+    <br>
+    <ul>
+        <li>
+            {% if category is defined %}
+                <a href="{{ path('product_new', { 'category': category.id }) }}" class="button button-rounded button-inverse">创建新产品</a>
+            {% endif %}
+            <a href="{{ path('product_selectCategory') }}" class="button button-rounded button-inverse">返回</a>
+        </li>
+    </ul>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>中文名</th>
+            <th>西语名</th>
+            <th>单价</th>
+            <th>货号</th>
+            <th>照片</th>
+            <th>是否显示</th>
+            {% if category is defined %}
+                <th>操作</th>
+            {% else %}
+                <th>所属分类</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.nameEs }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.code }}</td>
+                <td><img src="{{ asset('uploads/fotos/' ~ product.foto) }}" height="100px" width="100px"></td>
+                <td>{% if product.isShow %}Yes{% else %}No{% endif %}</td>
+                <td>
+                        <a href="{{ path('product_edit', { 'id': product.id }) }}" class="button button-small button-highlight">修改</a>
+                    {% if category is defined %}
+                    {% else %}
+                        <a class="button button-small button-primary" href="{{ path('product_index', {'category': product.category.id }) }}">{{ product.category.name }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

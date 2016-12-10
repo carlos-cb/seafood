@@ -1,0 +1,44 @@
+{% extends 'MariscoBundle:BackEnd:index.html.twig' %}
+
+{% block menuslide %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('marisco_homepage_admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp;总览  <span class="sr-only">(current)</span></a></li>
+        <li><a><i class="fa fa-info" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;信息</a></li>
+        <li><a><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp; 分析</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('user_index') }}"><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp;用户管理</a></li>
+        <li><a href="{{ path('category_index') }}"><i class="fa fa-columns" aria-hidden="true"></i> &nbsp;&nbsp;分类管理</a></li>
+        <li class="active"><a href="{{ path('product_selectCategory') }}"><i class="fa fa-cutlery" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;产品管理</a></li>
+        <li><a href="{{ path('sale_index') }}"><i class="fa fa-heart" aria-hidden="true"></i> &nbsp;&nbsp;折扣管理</a></li>
+        <li><a href="{{ path('orderinfo_index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i> &nbsp;&nbsp;订单管理</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>产品管理</h1>
+    <h3 class="sub-header">选择产品所在分类</h3>
+    <br>
+    <div class="row category">
+        <div class="col-xs-6 col-md-3">
+            <div class="boxCategory">
+                <a href="{{ path('product_indexAll') }}">
+                    <img src="{{ asset('bundles/marisco/img/all.jpg') }}">
+                </a>
+            </div>
+            <h4>所有产品</h4>
+        </div>
+        {% for category in categories %}
+            <div class="col-xs-6 col-md-3">
+                <div class="boxCategory">
+                    <a href="{{ path('product_index', {'category': category.id }) }}">
+                        <img src="{{ asset('uploads/fotos/' ~ category.foto) }}">
+                    </a>
+                </div>
+                <h4>{{ category.name }}</h4>
+                <br><br>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+MariscoBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: MariscoBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        discount:
+            type: integer
+            nullable: true
+    oneToOne:
+        cart:
+            targetEntity: Cart
+            mappedBy: user
+        data:
+            targetEntity: Data
+            mappedBy: user
+    oneToMany:
+        orderInfos:
+            targetEntity: OrderInfo
+            mappedBy: user
+    lifecycleCallbacks: {  }

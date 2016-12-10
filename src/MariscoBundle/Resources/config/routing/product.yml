@@ -1,0 +1,32 @@
+product_index:
+    path:     /{category}/index
+    defaults: { _controller: "MariscoBundle:Product:index" }
+    methods:  GET
+
+product_show:
+    path:     /{id}/show
+    defaults: { _controller: "MariscoBundle:Product:show" }
+    methods:  GET
+
+product_new:
+    path:     /{category}/new
+    defaults: { _controller: "MariscoBundle:Product:new" }
+    methods:  [GET, POST]
+
+product_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MariscoBundle:Product:edit" }
+    methods:  [GET, POST]
+
+product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MariscoBundle:Product:delete" }
+    methods:  DELETE
+
+product_selectCategory:
+    path:     /selectCategory
+    defaults: { _controller: "MariscoBundle:Product:selectCategory" }
+
+product_indexAll:
+    path:     /all
+    defaults: { _controller: "MariscoBundle:Product:indexAll" }

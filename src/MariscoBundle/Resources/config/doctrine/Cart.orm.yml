@@ -1,0 +1,22 @@
+MariscoBundle\Entity\Cart:
+    type: entity
+    table: null
+    repositoryClass: MariscoBundle\Repository\CartRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToOne:
+        user:
+            targetEntity: User
+            inversedBy: cart
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    oneToMany:
+        cartItems:
+            targetEntity: CartItem
+            mappedBy: cart
+    lifecycleCallbacks: {  }

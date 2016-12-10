@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/marisco/css/orderinfo.css') }}" />
+    <link href="{{ asset('bundles/marisco/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+    {% include 'MariscoBundle:Public:header.html.twig' %}
+
+        <div class="line mod" style="margin-top: 30px;">
+            <div class="unit size1of1">
+                <h1>订单处理流程</h1>
+            </div>
+        </div>
+        <div class="line mod">
+            <div class="unit size1of1">
+                <div class="steps">
+                    <ul class="listH">
+                        <li>1. 选择货品</li>
+                        <li class="act">2. 填写信息</li>
+                        <li>3. 确认订单</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{{ path('order_cartToOrderinfo') }}" name="orderinfo">
+            <div class="line mod">
+                <div class="radioGroup">
+                    <h2>选择付款方式</h2>
+                    <div style="display: none">
+                        <input id="radio-1" class="radio-custom" name="radio-group" type="radio" value="1">
+                        <label for="radio-1" class="radio-custom-label">银行卡在线付款 享95折优惠</label>
+                    </div>
+                    <div style="display: none">
+                        <input id="radio-2" class="radio-custom" name="radio-group" type="radio" value="2">
+                        <label for="radio-2" class="radio-custom-label">银行转账 享95折优惠</label>
+                    </div>
+                    <div>
+                        <input id="radio-3" class="radio-custom" name="radio-group" type="radio" value="3" checked>
+                        <label for="radio-3" class="radio-custom-label">货到付款</label>
+                    </div>
+                </div>
+            </div>
+            <div class="line mod">
+                <div class="radioGroup">
+                    <h2>联系人信息</h2>
+                    <div class="form-group">
+                        <label for="inputtel" class="col-sm-2 control-label">电话</label>
+                        <div class="col-sm-8">
+                            <input name="phonenumber" type="text" class="form-control" id="inputtel" required="required" {% if data.receiverphone is defined %}value="{{ data.receiverphone }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputname" class="col-sm-2 control-label">公司名</label>
+                        <div class="col-sm-8">
+                            <input name="name" type="text" class="form-control" id="inputname" required="required"  {% if data.receivername is defined %}value="{{ data.receivername }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputshuihao" class="col-sm-2 control-label">税号</label>
+                        <div class="col-sm-8">
+                            <input name="shuihao" type="text" class="form-control" id="inputshuihao" required="required" {% if data.receivershuihao is defined %}value="{{ data.receivershuihao }}"{% endif %}>
+                        </div>
+                    </div>
+                    <h2>运送信息</h2>
+                    <div class="form-group">
+                        <label for="inputaddress" class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-8">
+                            <input name="address" type="text" class="form-control" id="inputaddress" required="required" {% if data.receiveradress is defined %}value="{{ data.receiveradress }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputpost" class="col-sm-2 control-label">邮编</label>
+                        <div class="col-sm-8">
+                            <input name="postcode" type="text" class="form-control" id="inputpost" required="required" {% if data.receiverpostcode is defined %}value="{{ data.receiverpostcode }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputlocal" class="col-sm-2 control-label">城市</label>
+                        <div class="col-sm-8">
+                            <input name="city" type="text" class="form-control" id="inputlocal" required="required" {% if data.receivercity is defined %}value="{{ data.receivercity }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputprovince" class="col-sm-2 control-label">省份</label>
+                        <div class="col-sm-8">
+                            <input name="province" type="text" class="form-control" id="inputprovince" required="required" {% if data.receiverprovince is defined %}value="{{ data.receiverprovince }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="time" class="col-sm-2 control-label">预约送货时间</label>
+                        <div class="input-group date form_datetime" style="position: relative;left: 15px;">
+                            <input class="form-control" id="time" type="text" name="time" required="required" data-date-format="yyyy-mm-dd hh:ii">
+                            <span class="input-group-addon" style="display: none"><span class="glyphicon glyphicon-th"></span></span>
+
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="">
+                        <div class="unit size1of1">
+                            <div class="actions fLeft">
+                                <button id="backCheckoutShippingBt" type="button" value="Volver" class="button butBack butWhite gaViewEvent"
+                                        onclick="window.location.href='{{ path('shop_cart') }}'">
+                                    <span style="bottom: 0;color: black;"><i class="fa fa-arrow-left" aria-hidden="true"></i> 返回</span>
+                                </button>
+                            </div>
+                            <div class="actions fRight">
+                                <button id="checkoutPaymentBt" type="submit" value="FINALIZAR PEDIDO"
+                                        class="button butBlack authPayment gaTrack gaViewEvent">
+                                    <span style="bottom: 0">下一步</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/marisco/js/bootstrap-datetimepicker.js') }}"></script>
+    <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+    </script>
+{% endblock %}

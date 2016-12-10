@@ -1,0 +1,55 @@
+{% extends 'MariscoBundle:BackEnd:index.html.twig' %}
+
+{% block menuslide %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('marisco_homepage_admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp;总览  <span class="sr-only">(current)</span></a></li>
+        <li><a><i class="fa fa-info" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;信息</a></li>
+        <li><a><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp; 分析</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('user_index') }}"><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp;用户管理</a></li>
+        <li class="active"><a href="{{ path('category_index') }}"><i class="fa fa-columns" aria-hidden="true"></i> &nbsp;&nbsp;分类管理</a></li>
+        <li><a href="{{ path('product_selectCategory') }}"><i class="fa fa-cutlery" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;产品管理</a></li>
+        <li><a href="{{ path('sale_index') }}"><i class="fa fa-heart" aria-hidden="true"></i> &nbsp;&nbsp;折扣管理</a></li>
+        <li><a href="{{ path('orderinfo_index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i> &nbsp;&nbsp;订单管理</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1 class="sub-header">产品分类管理</h1>
+    <br>
+    <ul>
+        <li>
+            <a href="{{ path('category_new') }}" class="button button-rounded button-inverse">创建新分类</a>
+        </li>
+    </ul>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>分类名</th>
+                <th>描述</th>
+                <th>分类图片</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td><img src="{{ asset('uploads/fotos/' ~ category.foto) }}" height="100px" width="120px"></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('category_edit', { 'id': category.id }) }}" class="button button-small button-primary">修改</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

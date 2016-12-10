@@ -1,0 +1,51 @@
+marisco_category:
+    resource: "@MariscoBundle/Resources/config/routing/category.yml"
+    prefix:   /admin/category
+
+marisco_img:
+    resource: "@MariscoBundle/Resources/config/routing/img.yml"
+    prefix:   /admin/img
+
+marisco_orderinfo:
+    resource: "@MariscoBundle/Resources/config/routing/orderinfo.yml"
+    prefix:   /admin/orderinfo
+
+marisco_orderitem:
+    resource: "@MariscoBundle/Resources/config/routing/orderitem.yml"
+    prefix:   /admin/orderitem
+
+marisco_product:
+    resource: "@MariscoBundle/Resources/config/routing/product.yml"
+    prefix:   /admin/product
+
+marisco_user:
+    resource: "@MariscoBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+
+marisco_sale:
+    resource: "@MariscoBundle/Resources/config/routing/sale.yml"
+    prefix:   /admin/sale
+
+marisco_cart:
+    resource: "@MariscoBundle/Resources/config/routing/cart.yml"
+    prefix:   /cart
+
+marisco_font:
+    resource: "@MariscoBundle/Resources/config/routing/font.yml"
+    prefix:   /product
+
+marisco_order:
+    resource: "@MariscoBundle/Resources/config/routing/order.yml"
+    prefix:   /order
+
+marisco_data:
+    resource: "@MariscoBundle/Resources/config/routing/data.yml"
+    prefix:   /data
+
+marisco_homepage:
+    path:     /
+    defaults: { _controller: MariscoBundle:Default:index }
+
+marisco_homepage_admin:
+    path:     /admin
+    defaults: { _controller: MariscoBundle:Default:backEnd }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}产品列表{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('bundles/marisco/css/button.css') }}" />
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+            <link rel="stylesheet" href="{{ asset('bundles/marisco/css/productlist.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/marisco/css/jquery.fancybox.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon_m.ico') }}" />
+    </head>
+    <body>
+    <div class="container-fluid" id="container">
+        <div class="topnav">
+            <div class="rightlogo">
+                <a href="{{ path('marisco_homepage') }}#categorias"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;返回</a>
+            </div>
+            <div class="toplogo">
+                <a href="{{ path('shop_cart') }}"><i class="fa fa-shopping-bag"></i> &nbsp;进入购物车</a>
+            </div>
+        </div>
+        <div class="productlist" id="product">
+            {% for product in products %}
+                <div class="col-lg-4 col-md-4 col-xs-6 product" id="product{{ product.id }}">
+                    <div class="thumbnail">
+                        <div id="productimg">
+                            <a id="product_image" href="{{ asset('uploads/fotos/' ~ product.foto) }}">
+                                <img src="{{ asset('uploads/fotos/' ~ product.foto) }}" data-src="{{ asset('uploads/fotos/' ~ product.foto) }}">
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <div id="productname">
+                                <p class="productname">{{ product.name }}</p>
+                            </div>
+                            <div class="col-xs-6 col-xs-offset-2 col-md-6 col-md-offset-1">
+                                <p id="productinfo">编号: {{ product.code }}<br>
+                                    {% if product.isSale == 1 %}
+                                        <span class="sale">{{ product.discountPrice|number_format(2, '.', ',') }} €</span>
+                                        <span class="line-through">{{ product.price|number_format(2, '.', ',') }} €</span>
+                                    {% else %}
+                                        <span>{{ product.price|number_format(2, '.', ',') }} €</span>
+                                    {% endif %}&nbsp;&nbsp;
+                                    {% if product.isOferta == 1 %}
+                                        <span style="color: red">{{ product.maiUnit }} X {{ product.suanUnit }}</span><br>
+                                    {% endif %}
+                                </p>
+                                <p class="productId" style="display: none">{{ product.id }}</p>
+                            </div>
+                            <div class="col-xs-4 col-md-3 col-md-offset-1">
+                            <span class="button-wrap nocart">
+                                <a class="button button-circle button-raised button-highlight nocart button-giant" href="#numselect{{ product.id }}">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </span>
+                            <span class="button-wrap yescart" style="display: none;">
+                                <a class="button button-circle button-action button-raised button-giant yecart" onclick="alert('该商品已经在购物车中，请至购物车确认商品数量。')">
+                                    <i class="fa fa-check"></i>
+                                </a>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="numselect" id="numselect{{ product.id }}" style="display: none; text-align: center; min-width: 500px;min-height: 500px;">
+                    <br><br><br><br><br><br>
+                    <p class="productIdHidden" style="display: none">{{ product.id }}</p>
+                    <button class="min button button-inverse button-box button-giant button-3d" style="margin-right: 60px"><i class="fa fa-minus"></i></button>
+                    <button class="add button button-inverse button-box button-giant button-3d"><i class="fa fa-plus"></i></button>
+                    <br><br><br><br>
+                    <h2 class="heji">
+                        小计：<span id="num">1</span>
+                        x <span id="price">{% if product.isSale %}{{ product.discountPrice }}{% else %}{{ product.price }}{% endif %}</span> €
+                        = <span id="heji"></span> €
+                    </h2>
+                    <br><br>
+                    <button class="button button-circle button-raised button-primary numcheck button-giant button-3d" data-path="{{ path('cart_addtocartAjax') }}">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <br><br>
+                </div>
+            {% endfor %}
+            <ul class="cartItems" style="display: none">
+                {% for cartItem in cartItems %}
+                    <li class="cartItemId">{{ cartItem.product }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        {% block javascripts %}
+            <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+            <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+            <script src="{{ asset('bundles/marisco/js/jquery.fancybox.pack.js') }}"></script>
+            <script src="{{ asset('bundles/marisco/js/productlist.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
+
+
