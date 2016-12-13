@@ -57,7 +57,7 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.code }}</td>
                 <td><img src="{{ asset('uploads/fotos/' ~ product.foto) }}" height="100px" width="100px"></td>
-                <td>{% if product.isShow %}Yes{% else %}No{% endif %}</td>
+                <td>{% if product.isShow %}显示{% else %}不显示{% endif %}</td>
                 <td>
                         <a href="{{ path('product_edit', { 'id': product.id }) }}" class="button button-small button-highlight">修改</a>
                     {% if category is defined %}

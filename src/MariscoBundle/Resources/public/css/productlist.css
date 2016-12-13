@@ -62,8 +62,13 @@ a:hover{
     .product #productinfo{
         float: left;
     }
-    #productname p{
+    #productname p.productname{
         font-weight: bold;
+        font-size: 30px;
+    }
+    #productname p.productnameEs{
+        font-weight: bold;
+        font-size: 20px;
     }
     .product p{
         font-size:28px;
@@ -124,9 +129,13 @@ a:hover{
         float: left;
         font-size: 20px;
     }
-    #productname p{
+    #productname p.productname{
         font-weight: 700;
         font-size: 24px;
+    }
+    #productname p.productnameEs{
+        font-weight: 600;
+        font-size: 14px;
     }
     .product p{
         line-height: 1;
