@@ -13,6 +13,9 @@ a:hover{
 }
 
 @media (max-width: 991px){
+    .productlist{
+        margin-top: 70px;
+    }
     .topnav{
         height: 65px;
         width: 100%;
@@ -80,6 +83,9 @@ a:hover{
     }
 }
 @media (min-width: 992px){
+    .productlist{
+        margin-top: 45px;
+    }
     .topnav{
         height: 45px;
         width: 100%;

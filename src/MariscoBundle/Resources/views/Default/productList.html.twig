@@ -14,7 +14,7 @@
     </head>
     <body>
     <div class="container-fluid" id="container">
-        <div class="topnav">
+        <div class="topnav navbar-fixed-top" style="z-index: 100;">
             <div class="rightlogo">
                 <a href="{{ path('marisco_homepage') }}#categorias"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;返回</a>
             </div>
@@ -22,7 +22,7 @@
                 <a href="{{ path('shop_cart') }}"><i class="fa fa-shopping-bag"></i> &nbsp;进入购物车</a>
             </div>
         </div>
-        <div class="productlist" id="product">
+        <div class="productlist" id="product" style="margin-top: 65px;">
             {% for product in products %}
                 <div class="col-lg-4 col-md-4 col-xs-6 product" id="product{{ product.id }}">
                     <div class="thumbnail">
