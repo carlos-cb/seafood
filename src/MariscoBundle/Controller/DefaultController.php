@@ -30,8 +30,14 @@ class DefaultController extends Controller
         }
         $em->persist($global);
         $em->flush();
-
-        
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if(!$user->getCart()){
+                $cart = new Cart();
+                $cart->setUser($user);
+                $em->persist($cart);
+                $em->flush();
+            }
+        }
         return $this->render('MariscoBundle:Default:index.html.twig', array(
             'categories' => $categories,
         ));
