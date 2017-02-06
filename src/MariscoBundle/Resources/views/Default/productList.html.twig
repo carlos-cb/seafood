@@ -19,7 +19,11 @@
                 <a href="{{ path('marisco_homepage') }}#categorias"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;返回</a>
             </div>
             <div class="toplogo">
-                <a href="{{ path('shop_cart') }}"><i class="fa fa-shopping-bag"></i> &nbsp;进入购物车</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('shop_cart') }}"><i class="fa fa-shopping-bag"></i> &nbsp;进入购物车</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}"><i class="fa fa-shopping-bag"></i> &nbsp;进入购物车</a>
+                {% endif %}
             </div>
         </div>
         <div class="productlist" id="product" style="margin-top: 65px;">
@@ -52,9 +56,15 @@
                             </div>
                             <div class="col-xs-4 col-md-3 col-md-offset-1">
                             <span class="button-wrap nocart">
-                                <a class="button button-circle button-raised button-highlight nocart button-giant" href="#numselect{{ product.id }}">
-                                    <i class="fa fa-plus"></i>
-                                </a>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a class="button button-circle button-raised button-highlight nocart button-giant" href="#numselect{{ product.id }}">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="button button-circle button-raised button-highlight nocart button-giant" href="{{ path('fos_user_security_login') }}">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                {% endif %}
                             </span>
                             <span class="button-wrap yescart" style="display: none;">
                                 <a class="button button-circle button-action button-raised button-giant yecart" onclick="alert('该商品已经在购物车中，请至购物车确认商品数量。')">
@@ -88,9 +98,8 @@
                     <li class="cartItemId">{{ cartItem.product }}</li>
                 {% endfor %}
             </ul>
-
         </div>
-
+    </div>
         {% block javascripts %}
             <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
             <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

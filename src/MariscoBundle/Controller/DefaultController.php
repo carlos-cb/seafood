@@ -17,14 +17,20 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('MariscoBundle:Category')->findAll();
-
         $user = $this->getUser();
-        if(!$user->getCart()){
-            $cart = new Cart();
-            $cart->setUser($user);
-            $em->persist($cart);
-            $em->flush();
+        $global = $em->getRepository('MariscoBundle:Globals')->findOneById(2);
+        $timeNow = new \DateTime('now');
+        if($global->getMan() == $timeNow->format('d'))
+        {
+            $global->setJian($global->getJian()+1);
         }
+        else
+        {
+            $global->setMan($timeNow->format('d'))->setJian(1);
+        }
+        $em->persist($global);
+        $em->flush();
+
         
         return $this->render('MariscoBundle:Default:index.html.twig', array(
             'categories' => $categories,
@@ -38,7 +44,9 @@ class DefaultController extends Controller
         $numUser = $em->getRepository('MariscoBundle:User')->createQueryBuilder('a')->select('COUNT(a.id)')->getQuery()->getSingleScalarResult();
         $numOrder = $em->getRepository('MariscoBundle:OrderInfo')->createQueryBuilder('b')->select('COUNT(b.id)')->getQuery()->getSingleScalarResult();
         $numProduct = $em->getRepository('MariscoBundle:Product')->createQueryBuilder('c')->select('COUNT(c.id)')->getQuery()->getSingleScalarResult();
+        $global = $em->getRepository('MariscoBundle:Globals')->findOneById(2);
 
+        $viewsToday = $global->getJian();
         $queryU = $em->createQuery("SELECT p FROM MariscoBundle:User p WHERE 1=1 order by p.id DESC")->setMaxResults(10);
         $users = $queryU->getResult();
 
@@ -58,6 +66,7 @@ class DefaultController extends Controller
             'users' => $users,
             'orders' => $orders,
             'day6Orders' => $day6Orders,
+            'viewsToday' => $viewsToday,
         ));
     }
 
@@ -69,8 +78,13 @@ class DefaultController extends Controller
             array('category' => $category, 'isShow' => true)
         );
 
-        $cart = $this->getUser()->getCart();
-        $cartItems = $cart->getCartItems();
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $cartItems = null;
+        }else{
+            $cart = $this->getUser()->getCart();
+            $cartItems = $cart->getCartItems();
+        }
+
 
         return $this->render('MariscoBundle:Default:productList.html.twig', array(
             'user' => $user,

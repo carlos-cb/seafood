@@ -15,8 +15,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('shop_cart') }}">购物车</a></li>
-                <li><a href="{{ path('order_pedido') }}">我的订单</a></li>
+                <li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('shop_cart') }}">购物车</a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}">购物车</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('order_pedido') }}">我的订单</a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}">我的订单</a>
+                    {% endif %}
+                </li>
                 <li><a href="{{ path('fos_user_security_logout') }}">退出登录</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

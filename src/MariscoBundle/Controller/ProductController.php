@@ -64,10 +64,10 @@ class ProductController extends Controller
         $product = new Product();
         $product->setCategory($category);
         $form = $this->createForm('MariscoBundle\Form\ProductType', $product);
-        $form->handleRequest($request);
+        $form->handleRequest($request);$product->setDiscountPrice($product->getPrice())->setIsSale(0)->setIsOferta(false)->setMaiUnit(0)->setSuanUnit(0);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product->setDiscountPrice($product->getPrice())->setIsSale(0)->setIsOferta(false)->setMaiUnit(0)->setSuanUnit(0);
+            
 
             $file = $product->getFoto();
             $fileName = $this->get('marisco.foto_uploader')->upload($file);
